@@ -2,9 +2,9 @@
 
 namespace BaseAlgorithms
 {
-    public class InverseInsertionSort
+    public class InsertionSort
     {
-        public static T[] Sort<T>(T[] arr) where T : struct,
+        public static T[] ReverseSort<T>(T[] arr) where T : struct,
             IComparable,
             IComparable<T>,
             IConvertible,
@@ -33,7 +33,7 @@ namespace BaseAlgorithms
         public static bool IsGreaterThan<T>(T actual, T comp) where T : IComparable<T>
             => actual.CompareTo(comp) > 0;
 
-        public static T[] ForwardSort<T>(T[] arr) where T : struct,
+        public static T[] Sort<T>(T[] arr) where T : struct,
             IComparable,
             IComparable<T>,
             IConvertible,

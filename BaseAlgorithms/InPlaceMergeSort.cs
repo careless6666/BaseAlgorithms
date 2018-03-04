@@ -34,12 +34,13 @@ namespace BaseAlgorithms
         static void Merge(int[] arr, int left, int right, int mid)
         {
             var i = left;
+            //sort left part
             while (i <= mid)
             {
                 if (arr[i] > arr[mid + 1])
                 {
                     Swap(arr, i, mid + 1);
-                    Push(arr, mid + 1, right);
+                    SortRightPart(arr, mid + 1, right);
                 }
                 i++;
             }
@@ -52,9 +53,9 @@ namespace BaseAlgorithms
             arr[left] = arr[left] ^ arr[right];
         }
 
-        static void Push(int[] arr, int s, int e)
+        static void SortRightPart(int[] arr, int left, int right)
         {
-            for (var i = s; i < e; i++)
+            for (var i = left; i < right; i++)
             {
                 if (arr[i] > arr[i + 1])
                     Swap(arr, i, i + 1);

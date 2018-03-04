@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BaseAlgorithms
+﻿namespace BaseAlgorithms.MergeSort
 {
     public class InPlaceMergeSort
     {

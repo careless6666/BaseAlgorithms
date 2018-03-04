@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 
-namespace BaseAlgorithms
+namespace BaseAlgorithms.MergeSort
 {
     public class MergeSort
     {

@@ -4,13 +4,12 @@
     {
         public static int MaxSubArraySum(int[] a)
         {
-            var size = a.Length;
             int maxSoFar = int.MinValue,
                 maxEndingHere = 0;
 
-            for (var i = 0; i < size; i++)
+            foreach (var t in a)
             {
-                maxEndingHere = maxEndingHere + a[i];
+                maxEndingHere = maxEndingHere + t;
 
                 if (maxSoFar < maxEndingHere)
                     maxSoFar = maxEndingHere;

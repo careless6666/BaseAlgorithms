@@ -12,6 +12,11 @@ namespace BaseAlgorithms.Tests
             var max = LargestSumContiguousSubarray.MaxSubArraySum(arr);
 
             Assert.AreEqual(7, max);
+
+            arr = new [] { 2, 3, -4, 5, 7 };
+            max = LargestSumContiguousSubarray.MaxSubArraySum(arr);
+
+            Assert.AreEqual(13, max);
         }
     }
 }

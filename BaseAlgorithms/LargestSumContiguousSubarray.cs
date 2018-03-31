@@ -2,14 +2,19 @@
 {
     public class LargestSumContiguousSubarray
     {
-        public static int MaxSubArraySum(int[] a)
+        /// <summary>
+        /// Kadane’s Algorithm
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int MaxSubArraySum(int[] arr)
         {
             int maxSoFar = int.MinValue,
                 maxEndingHere = 0;
 
-            foreach (var t in a)
+            foreach (var item in arr)
             {
-                maxEndingHere = maxEndingHere + t;
+                maxEndingHere += item;
 
                 if (maxSoFar < maxEndingHere)
                     maxSoFar = maxEndingHere;

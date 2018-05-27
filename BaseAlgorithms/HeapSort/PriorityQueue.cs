@@ -73,24 +73,24 @@ namespace BaseAlgorithms.HeapSort
     
     public class Employee : IComparable<Employee>
     {
-        public string lastName;
-        public double priority; // smaller values are higher priority
+        public string LastName;
+        public double Priority; // smaller values are higher priority
 
         public Employee(string lastName, double priority)
         {
-            this.lastName = lastName;
-            this.priority = priority;
+            LastName = lastName;
+            Priority = priority;
         }
 
         public override string ToString()
         {
-            return "(" + lastName + ", " + priority.ToString("F1") + ")";
+            return "(" + LastName + ", " + Priority.ToString("F1") + ")";
         }
 
         public int CompareTo(Employee other)
         {
-            if (priority < other.priority) return -1;
-            if (priority > other.priority) return 1;
+            if (Priority < other.Priority) return -1;
+            if (Priority > other.Priority) return 1;
             return 0;
         }
     } // Employee

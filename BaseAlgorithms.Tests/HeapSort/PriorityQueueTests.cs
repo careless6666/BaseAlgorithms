@@ -31,13 +31,13 @@ namespace BaseAlgorithms.Tests.HeapSort
             pq.Enqueue(e7);
 
             var res = pq.Dequeue();
-            Assert.AreEqual(1, res.priority);
+            Assert.AreEqual(1, res.Priority);
 
             res = pq.Dequeue();
-            Assert.AreEqual(2, res.priority);
+            Assert.AreEqual(2, res.Priority);
 
             res = pq.Dequeue();
-            Assert.AreEqual(2.5, res.priority);
+            Assert.AreEqual(2.5, res.Priority);
 
         }
     }

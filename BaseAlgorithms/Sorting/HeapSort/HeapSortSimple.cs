@@ -24,19 +24,14 @@
             // If largest is not root
             if (largest != i)
             {
-                Swap(ref arr[i], ref arr[largest]);
+                Common.Swap(ref arr[i], ref arr[largest]);
 
                 // Recursively heapify the affected sub-tree
                 Heapify(arr, n, largest);
             }
         }
 
-        static void Swap(ref int a, ref int b)
-        {
-            var temp = a;
-            a = b;
-            b = temp;
-        }
+        
 
         // main function to do heap sort
         public static void HeapSort(int[] arr, int n)
@@ -49,7 +44,7 @@
             for (var i = n - 1; i >= 0; i--)
             {
                 // Move current root to end
-                Swap(ref arr[0], ref arr[i]);
+                Common.Swap(ref arr[0], ref arr[i]);
 
                 // call max heapify on the reduced heap
                 Heapify(arr, i, 0);

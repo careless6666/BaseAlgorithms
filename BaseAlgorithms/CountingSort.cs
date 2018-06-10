@@ -1,4 +1,9 @@
-﻿namespace BaseAlgorithms
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BaseAlgorithms
 {
     public class CountingSort
     {
@@ -10,12 +15,14 @@
             // will have sorted arr
             var output = new int[n];
 
+
+            var countArrSize = arr.Max() + 1;
             // Create a count array to store 
             // count of inidividul characters 
             // and initialize count array as 0
-            var count = new int[256];
+            var count = new int[countArrSize];
 
-            for (var i = 0; i < 256; ++i)
+            for (var i = 0; i < countArrSize; ++i)
                 count[i] = 0;
 
             // store count of each character
@@ -25,7 +32,7 @@
             // Change count[i] so that count[i] 
             // now contains actual position of 
             // this character in output array
-            for (var i = 1; i <= 255; ++i)
+            for (var i = 1; i <= countArrSize-1; ++i)
                 count[i] += count[i - 1];
 
             // Build the output character array

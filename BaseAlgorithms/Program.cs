@@ -6,6 +6,7 @@ namespace BaseAlgorithms
     {
         static void Main(string[] args)
         {
+            var p = DateTime.Now;
             Console.WriteLine("Hello World!");
         }
     }

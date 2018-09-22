@@ -80,6 +80,8 @@ namespace BaseAlgorithms
             return false;
         }
 
+        public Interval GetFullTree => _tree;
+
         public void Remove(DateTime start, DateTime end)
         {
             var queue = new Queue<Interval>();
@@ -107,10 +109,15 @@ namespace BaseAlgorithms
                         for (int j = 0; j < currentNode.Childs.Count; j++)
                         {
                             //проверяем что есть на одном уровне узлы, которые могут включать в себя другие узлы
-                            if (i != j 
-                                && currentNode.Childs[i].Start <= currentNode.Childs[j].Start
-                                && currentNode.Childs[i].End >= currentNode.Childs[j].End)
+                            if (i == j)
+                                continue;
+
+                            if(currentNode.Childs[i]?.Start <= currentNode.Childs[j]?.Start
+                               && currentNode.Childs[i]?.End >= currentNode.Childs[j]?.End)
                             {
+                                if(currentNode.Childs[i].Childs == null)
+                                    currentNode.Childs[i].Childs = new List<Interval>();
+
                                 currentNode.Childs[i].Childs.Add(currentNode.Childs[j]); //скопируем на уровень ниже
                                 currentNode.Childs.Remove(currentNode.Childs[j]);
 
@@ -126,11 +133,14 @@ namespace BaseAlgorithms
             }
         }
 
-        public void GetIntervals() { }
+        public void GetIntervals()
+        {
+
+        }
         public void GwtSplitedIntervals(int splitSize) { }
     }
 
-    class Interval
+    public class Interval
     {
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }

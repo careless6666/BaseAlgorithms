@@ -91,10 +91,39 @@ namespace BaseAlgorithms
             }
         }
 
-        public bool Rebuild()
+        public void Rebuild()
         {
+            var queue = new Queue<Interval>();
+            queue.Enqueue(_tree);
 
-            return false;
+            while (queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+
+                if (currentNode.Childs?.Any() == true)
+                {
+                    for (var i = 0; i < currentNode.Childs.Count; i++)
+                    {
+                        for (int j = 0; j < currentNode.Childs.Count; j++)
+                        {
+                            //проверяем что есть на одном уровне узлы, которые могут включать в себя другие узлы
+                            if (i != j 
+                                && currentNode.Childs[i].Start <= currentNode.Childs[j].Start
+                                && currentNode.Childs[i].End >= currentNode.Childs[j].End)
+                            {
+                                currentNode.Childs[i].Childs.Add(currentNode.Childs[j]); //скопируем на уровень ниже
+                                currentNode.Childs.Remove(currentNode.Childs[j]);
+
+                                Rebuild();
+                                return;
+                            }
+                        }
+                    }
+
+                    foreach (var interval in currentNode.Childs)
+                        queue.Enqueue(interval);
+                }
+            }
         }
 
         public void GetIntervals() { }

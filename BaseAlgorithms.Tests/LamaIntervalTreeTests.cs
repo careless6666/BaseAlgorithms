@@ -7,7 +7,7 @@ namespace BaseAlgorithms.Tests
     public class LamaIntervalTreeTests
     {
         [TestMethod]
-        public void AddItem()
+        public void TestAddItem()
         {
             var dt = DateTime.Now;
             var lim = new LamaIntervalTree(3);
@@ -18,6 +18,14 @@ namespace BaseAlgorithms.Tests
             var res4 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 11, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 12, 0, 0));
             var res5 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 10, 30, 0), new DateTime(dt.Year, dt.Month, dt.Day, 11, 30, 0));
             Assert.IsTrue(res); 
+        }
+
+        [TestMethod]
+        public void TestRebuild()
+        {
+            var lim = new LamaIntervalTree();
+
+            lim.Rebuild();
         }
     }
 }

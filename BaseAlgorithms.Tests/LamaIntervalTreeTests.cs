@@ -9,10 +9,14 @@ namespace BaseAlgorithms.Tests
         [TestMethod]
         public void AddItem()
         {
-            var lim = new LamaIntervalTree();
-            var res = lim.TryAdd(DateTime.UtcNow, DateTime.Now);
-            var res1 = lim.TryAdd(DateTime.UtcNow, DateTime.Now);
-            var res2 = lim.TryAdd(DateTime.UtcNow, DateTime.Now);
+            var dt = DateTime.Now;
+            var lim = new LamaIntervalTree(3);
+            var res = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 3, 0,0), new DateTime(dt.Year, dt.Month, dt.Day, 5, 0, 0));
+            var res1 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 10, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 12, 0, 0));
+            var res2 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 13, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 17, 0, 0));
+            var res3 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 10, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 11, 0, 0));
+            var res4 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 11, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 12, 0, 0));
+            var res5 = lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 10, 30, 0), new DateTime(dt.Year, dt.Month, dt.Day, 11, 30, 0));
             Assert.IsTrue(res); 
         }
     }

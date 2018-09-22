@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BaseAlgorithms
 {
     public class LamaIntervalTree
     {
-        private readonly Interval _tree = new Interval();
-        private int _overlapSize;
-
-        public LamaIntervalTree(int overlapSize = 0)
+        private readonly Interval _tree = new Interval
         {
-            _overlapSize = overlapSize;
+            Start = DateTime.MinValue,
+            End = DateTime.MaxValue
+        };
+        private int _overlapMinutesSize;
+
+        public LamaIntervalTree(int overlapMinutesSize = 0)
+        {
+            _overlapMinutesSize = overlapMinutesSize;
         }
 
         private void Add(DateTime start, DateTime end)
@@ -20,27 +25,36 @@ namespace BaseAlgorithms
 
             while (queue.Count > 0)
             {
-                var q = queue.Dequeue();
+                var currentNode = queue.Dequeue();
 
-                if (q.Start == DateTime.MinValue)
+                if (currentNode.Start == null)
                 {
-                    q.Start = start;
-                    q.End = end;
+                    currentNode.Start = start;
+                    currentNode.End = end;
                     return;
                 }
 
-                if (q.Childs == null)
+                if (currentNode.Start <= start && currentNode.End >= end)  // входит в интервал, добавим к детям
                 {
-                    q.Childs = new List<Interval> { new Interval
+                    if (currentNode.Childs == null)
+                    {
+                        currentNode.Childs = new List<Interval> { new Interval
                         {
                             Start = start,
                             End = end
                         }};
-                    return;
-                }
+                        return;
+                    }
 
-                foreach (var interval in q.Childs)
-                    queue.Enqueue(interval);
+                    if (!currentNode.Childs.Any(x => x.Start <= start && x.End >= end))
+                    {
+                        currentNode.Childs.Add(new Interval { Start = start, End = end });
+                        return;
+                    }
+
+                    foreach (var interval in currentNode.Childs)
+                        queue.Enqueue(interval);
+                }
             }
         }
 
@@ -64,12 +78,17 @@ namespace BaseAlgorithms
         {
 
         }
+
+        public void Rebuild()
+        {
+
+        }
     }
 
     class Interval
     {
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
         public List<Interval> Childs { get; set; }
     }
 }

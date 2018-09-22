@@ -18,21 +18,27 @@ namespace BaseAlgorithms
             _overlapMinutesSize = overlapMinutesSize;
         }
 
+        public LamaIntervalTree(DateTime start, DateTime end, int overlapMinutesSize = 0)
+        {
+            _overlapMinutesSize = overlapMinutesSize;
+            _tree = new Interval
+            {
+                Start = start,
+                End = end
+            };
+        }
+
         private void Add(DateTime start, DateTime end)
         {
             var queue = new Queue<Interval>();
             queue.Enqueue(_tree);
 
+            if (start <= _tree.Start || end >= _tree.End)
+                throw new ArgumentException("Interval outside tree boundaries");
+            
             while (queue.Count > 0)
             {
                 var currentNode = queue.Dequeue();
-
-                if (currentNode.Start == null)
-                {
-                    currentNode.Start = start;
-                    currentNode.End = end;
-                    return;
-                }
 
                 if (currentNode.Start <= start && currentNode.End >= end)  // входит в интервал, добавим к детям
                 {
@@ -74,15 +80,25 @@ namespace BaseAlgorithms
             return false;
         }
 
-        public void Remove()
+        public void Remove(DateTime start, DateTime end)
         {
+            var queue = new Queue<Interval>();
+            queue.Enqueue(_tree);
 
+            while (queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+            }
         }
 
-        public void Rebuild()
+        public bool Rebuild()
         {
 
+            return false;
         }
+
+        public void GetIntervals() { }
+        public void GwtSplitedIntervals(int splitSize) { }
     }
 
     class Interval

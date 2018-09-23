@@ -59,6 +59,7 @@ namespace BaseAlgorithms.Tests
             lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 5, 0, 0));
             lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 6, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 8, 0, 0));
             lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 9, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 17, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 15, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 20, 0, 0));
 
             lim.RebuildTree();
 

@@ -169,8 +169,32 @@ namespace BaseAlgorithms
 
         public List<Interval> GetIntervals()
         {
-            
-            return GetIntervalsWithoutOvelaping();
+            var intervalsWithoutOvelaping = GetIntervalsWithoutOvelaping();
+
+            var overlapsInsideIntervals = new double[_tree.Childs.Count];
+
+            if (_tree.Childs != null)
+            {
+                for (var i = 0; i < _tree.Childs.Count; i++)
+                {
+                    overlapsInsideIntervals[i] = Sum(_tree.Childs[i], 0);
+                }
+            }
+
+            double Sum(Interval interval, double val)
+            {
+                if (interval.Childs != null)
+                {
+                    foreach (var intervalChild in interval.Childs)
+                    {
+                        val = Sum(intervalChild, val);
+                    }
+                }
+
+                return val + (interval.Depth == 1 ? 0 : (interval.End.Value - interval.Start.Value).TotalMinutes);
+            }
+
+            return intervalsWithoutOvelaping;
         }
 
         private List<Interval> GetIntervalsWithoutOvelaping()
@@ -215,7 +239,7 @@ namespace BaseAlgorithms
 
             return freeIntervals;
         }
-        
+
         private long GetOverlapSize()
         {
             foreach (var child in _tree.Childs)

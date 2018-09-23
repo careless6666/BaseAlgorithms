@@ -50,7 +50,7 @@ namespace BaseAlgorithms.Tests
         {
             var dt = DateTime.Now;
 
-            var lim = new LamaIntervalTree( new DateTime(dt.Year, dt.Month, dt.Day, 0, 0 ,0), new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59));
+            var lim = new LamaIntervalTree( new DateTime(dt.Year, dt.Month, dt.Day, 0, 0 ,0), new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59), 3);
             
             lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 2, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0));
             lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 4, 0, 0));
@@ -64,7 +64,7 @@ namespace BaseAlgorithms.Tests
             lim.RebuildTree();
 
             var intervalList = lim.GetIntervals();
-            Assert.AreEqual(3, intervalList.Count);
+            Assert.AreEqual(4, intervalList.Count);
         }
     }
 }

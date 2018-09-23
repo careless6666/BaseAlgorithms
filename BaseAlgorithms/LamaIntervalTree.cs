@@ -170,11 +170,21 @@ namespace BaseAlgorithms
         public List<Interval> GetIntervals()
         {
             var intervalsWithoutOvelaping = GetIntervalsWithoutOvelaping();
+            var mergedIntervals = intervalsWithoutOvelaping;
 
             var overlapsInsideIntervals = new double[_tree.Childs.Count];
             GetInsideOverlaps(overlapsInsideIntervals);
 
-            return intervalsWithoutOvelaping;
+            for (var i = 0; i < overlapsInsideIntervals.Length; i++)
+            {
+                if (overlapsInsideIntervals[i] < _overlapMinutesSize)
+                    mergedIntervals.Add(_tree.Childs[i]);
+            }
+
+            foreach (var interval in mergedIntervals)
+                interval.Childs = null;
+            
+            return mergedIntervals;
         }
 
         private void GetInsideOverlaps(double[] overlapsInsideIntervals)
@@ -258,7 +268,7 @@ namespace BaseAlgorithms
 
             return freeIntervals;
         }
-        
+
         public void GwtSplitedIntervals(int splitSize) { }
     }
 

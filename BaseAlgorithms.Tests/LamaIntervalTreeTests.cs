@@ -48,8 +48,22 @@ namespace BaseAlgorithms.Tests
         [TestMethod]
         public void TestGetInterval()
         {
-            var lim = new LamaIntervalTree();
+            var dt = DateTime.Now;
+
+            var lim = new LamaIntervalTree( new DateTime(dt.Year, dt.Month, dt.Day, 0, 0 ,0), new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59));
+            
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 2, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 4, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 4, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 5, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 2, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 8, 30, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 3, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 5, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 6, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 8, 0, 0));
+            lim.TryAdd(new DateTime(dt.Year, dt.Month, dt.Day, 9, 0, 0), new DateTime(dt.Year, dt.Month, dt.Day, 17, 0, 0));
+
+            lim.RebuildTree();
+
             var intervalList = lim.GetIntervals();
+            Assert.AreEqual(3, intervalList.Count);
         }
     }
 }

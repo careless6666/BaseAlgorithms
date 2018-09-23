@@ -12,7 +12,7 @@ namespace BaseAlgorithms
             End = DateTime.Now.AddDays(2)
         };
         private int _overlapMinutesSize;
-        private int depthLimit = 4;
+        private int depthLimit = 5;
         private int _maxDepth;
 
         public LamaIntervalTree(int overlapMinutesSize = 0)
@@ -43,7 +43,7 @@ namespace BaseAlgorithms
             while (queue.Count > 0)
             {
                 var currentNode = queue.Dequeue();
-                
+
                 if (currentNode.Start <= start && currentNode.End >= end)  // входит в интервал, добавим к детям
                 {
                     if (currentNode.Childs == null)
@@ -54,7 +54,7 @@ namespace BaseAlgorithms
                             End = end,
                             Depth = currentDepth + 1
                         }};
-                        
+
                         return;
                     }
 
@@ -146,10 +146,10 @@ namespace BaseAlgorithms
                             if (i == j)
                                 continue;
 
-                            if(currentNode.Childs[i]?.Start <= currentNode.Childs[j]?.Start
+                            if (currentNode.Childs[i]?.Start <= currentNode.Childs[j]?.Start
                                && currentNode.Childs[i]?.End >= currentNode.Childs[j]?.End)
                             {
-                                if(currentNode.Childs[i].Childs == null)
+                                if (currentNode.Childs[i].Childs == null)
                                     currentNode.Childs[i].Childs = new List<Interval>();
 
                                 currentNode.Childs[i].Childs.Add(currentNode.Childs[j]); //скопируем на уровень ниже
@@ -167,26 +167,60 @@ namespace BaseAlgorithms
             }
         }
 
-        public List<(DateTime start, DateTime end)> GetIntervals()
+        public List<Interval> GetIntervals()
         {
-            if(_tree.Childs?.Any() == false)
+            
+            return GetIntervalsWithoutOvelaping();
+        }
+
+        private List<Interval> GetIntervalsWithoutOvelaping()
+        {
+            if (_tree.Childs == null || _tree.Childs.Count == 0)
             {
-                return new List<(DateTime start, DateTime end)>
+                return new List<Interval>
                 {
-                    (_tree.Start.Value, _tree.End.Value)
+                    new Interval { Start = _tree.Start, End =  _tree.End }
                 };
             }
 
+            var freeIntervals = new List<Interval>();
 
+            for (var i = 0; i < _tree.Childs.Count; i++)
+            {
+                if (freeIntervals.Count == 0 && _tree.Start < _tree.Childs[i].Start && i == 0)
+                {
+                    freeIntervals.Add(new Interval
+                    {
+                        Start = _tree.Start,
+                        End = _tree.Childs[0].Start
+                    });
+                    continue;
+                }
 
-            return null;
+                if (i > 0 && _tree.Childs[i - 1].End < _tree.Childs[i].Start)
+                {
+                    freeIntervals.Add(new Interval
+                    {
+                        Start = _tree.Childs[i - 1].End,
+                        End = _tree.Childs[i].Start
+                    });
+                }
+            }
+
+            freeIntervals.Add(new Interval
+            {
+                Start = _tree.Childs[_tree.Childs.Count - 1].End,
+                End = _tree.End
+            });
+
+            return freeIntervals;
         }
-
-        private long GetOverlamSize()
+        
+        private long GetOverlapSize()
         {
             foreach (var child in _tree.Childs)
             {
-                
+
             }
 
             return 0;
@@ -195,7 +229,7 @@ namespace BaseAlgorithms
         public void GwtSplitedIntervals(int splitSize) { }
     }
 
-    
+
 
     public class Interval
     {

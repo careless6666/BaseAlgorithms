@@ -57,6 +57,19 @@ namespace BaseAlgorithms.Tests.Data_Structures
             tree.Insert(6);
             tree.DisplayTree(tree.Root);
 
+
+            /*
+             *
+             *
+             *
+             *
+             *
+             *
+             */
+
+
+
+
             Assert.AreEqual(tree.Root.Left.Left.Data, -1);
 
             DeleteWithCheck(tree, -1);

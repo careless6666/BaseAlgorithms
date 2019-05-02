@@ -4,11 +4,10 @@ namespace BaseAlgorithms.Data_Structures
 {
     public class RedBlackTree
     {
-        private RBNode _root;
 
-        public RBNode Root => _root;
+        public RBNode Root { get; set; }
 
-        private void RotateLeft(RBNode root, RBNode node)
+        private void RotateLeft(RBNode node)
         {
             var nodeRight = node.Right;
 
@@ -20,7 +19,7 @@ namespace BaseAlgorithms.Data_Structures
             nodeRight.Parent = node.Parent;
 
             if (node.Parent == null)
-                CopyNode(nodeRight, root);
+                Root = nodeRight;
 
             else if (node == node.Parent.Left)
                 node.Parent.Left = nodeRight;
@@ -32,7 +31,7 @@ namespace BaseAlgorithms.Data_Structures
             node.Parent = nodeRight;
         }
 
-        private void RotateRight(RBNode root, RBNode node)
+        private void RotateRight(RBNode node)
         {
             var nodeLeft = node.Left;
 
@@ -44,7 +43,7 @@ namespace BaseAlgorithms.Data_Structures
             nodeLeft.Parent = node.Parent;
 
             if (node.Parent == null)
-                CopyNode(node, root);
+                Root = node;
 
             else if (node == node.Parent.Left)
                 node.Parent.Left = nodeLeft;
@@ -56,18 +55,10 @@ namespace BaseAlgorithms.Data_Structures
             node.Parent = nodeLeft;
         }
 
-        private static void CopyNode(RBNode srcNode, RBNode dstNode)
+        private void FixViolation(RBNode node)
         {
-            dstNode.Data = srcNode.Data;
-            dstNode.Color = srcNode.Color;
-            dstNode.Left = srcNode.Left;
-            dstNode.Right = srcNode.Right;
-            dstNode.Parent = srcNode.Parent;
-        }
-
-        private void FixViolation(RBNode root, RBNode node)
-        {
-            while ((node != root) && (node.Color != Color.Black) &&
+            while (
+                (node != Root) && (node.Color != Color.Black) &&
            (node.Parent.Color == Color.Red))
             {
 
@@ -99,7 +90,7 @@ namespace BaseAlgorithms.Data_Structures
                            Left-rotation required */
                         if (node == parentNode.Right)
                         {
-                            RotateLeft(root, parentNode);
+                            RotateLeft(parentNode);
                             node = parentNode;
                             parentNode = node.Parent;
                         }
@@ -107,7 +98,7 @@ namespace BaseAlgorithms.Data_Structures
                         /* Case : 3 
                            pt is left child of its parent 
                            Right-rotation required */
-                        RotateRight(root, grandParentNode);
+                        RotateRight(grandParentNode);
                         SwapColor(parentNode, grandParentNode);
                         node = parentNode;
                     }
@@ -136,7 +127,7 @@ namespace BaseAlgorithms.Data_Structures
                            Right-rotation required */
                         if (node == parentNode.Left)
                         {
-                            RotateRight(root, parentNode);
+                            RotateRight(parentNode);
                             node = parentNode;
                             parentNode = node.Parent;
                         }
@@ -144,14 +135,14 @@ namespace BaseAlgorithms.Data_Structures
                         /* Case : 3 
                            pt is right child of its parent 
                            Left-rotation required */
-                        RotateLeft(root, grandParentNode);
+                        RotateLeft(grandParentNode);
                         SwapColor(parentNode, grandParentNode);
                         node = parentNode;
                     }
                 }
             }
 
-            root.Color = Color.Black;
+            Root.Color = Color.Black;
         }
 
         private void SwapColor(RBNode a, RBNode b)
@@ -190,10 +181,10 @@ namespace BaseAlgorithms.Data_Structures
             var node = new RBNode(data);
 
             // Do a normal BST insert 
-            _root = BSTInsert(_root, node);
+            Root = BSTInsert(Root, node);
 
             // fix Red Black Tree violations 
-            FixViolation(_root, node);
+            FixViolation(node);
         }
 
         public RBNode Search(RBNode root, int key)
@@ -281,15 +272,15 @@ namespace BaseAlgorithms.Data_Structures
             }
             if (itemNode.Color == Color.Black)
             {
-                DeleteFixUp(root, childNode);
+                DeleteFixUp(childNode);
             }
 
         }
 
-        private void DeleteFixUp(RBNode root, RBNode node)
+        private void DeleteFixUp(RBNode node)
         {
 
-            while (node != null && node != root && node.Color == Color.Black)
+            while (node != null && node != Root && node.Color == Color.Black)
             {
                 if (node == node.Parent.Left)
                 {
@@ -298,7 +289,7 @@ namespace BaseAlgorithms.Data_Structures
                     {
                         parentRight.Color = Color.Black; //case 1
                         node.Parent.Color = Color.Red; //case 1
-                        RotateLeft(root, node.Parent); //case 1
+                        RotateLeft(node.Parent); //case 1
                         parentRight = node.Parent.Right; //case 1
                     }
                     if (parentRight.Left.Color == Color.Black && parentRight.Right.Color == Color.Black)
@@ -310,14 +301,14 @@ namespace BaseAlgorithms.Data_Structures
                     {
                         parentRight.Left.Color = Color.Black; //case 3
                         parentRight.Color = Color.Red; //case 3
-                        RotateRight(root,parentRight); //case 3
+                        RotateRight(parentRight); //case 3
                         parentRight = node.Parent.Right; //case 3
                     }
                     parentRight.Color = node.Parent.Color; //case 4
                     node.Parent.Color = Color.Black; //case 4
                     parentRight.Right.Color = Color.Black; //case 4
-                    RotateLeft(root, node.Parent); //case 4
-                    node = root; //case 4
+                    RotateLeft(node.Parent); //case 4
+                    node = Root; //case 4
                 }
                 else //mirror code from above with "right" & "left" exchanged
                 {
@@ -326,7 +317,7 @@ namespace BaseAlgorithms.Data_Structures
                     {
                         parentLeft.Color = Color.Black;
                         node.Parent.Color = Color.Red;
-                        RotateRight(root, node.Parent);
+                        RotateRight(node.Parent);
                         parentLeft = node.Parent.Left;
                     }
                     if (parentLeft.Right.Color == Color.Black && parentLeft.Left.Color == Color.Black)
@@ -338,14 +329,14 @@ namespace BaseAlgorithms.Data_Structures
                     {
                         parentLeft.Right.Color = Color.Black;
                         parentLeft.Color = Color.Red;
-                        RotateLeft(root, parentLeft);
+                        RotateLeft(parentLeft);
                         parentLeft = node.Parent.Left;
                     }
                     parentLeft.Color = node.Parent.Color;
                     node.Parent.Color = Color.Black;
                     parentLeft.Left.Color = Color.Black;
-                    RotateRight(root, node.Parent);
-                    node = root;
+                    RotateRight(node.Parent);
+                    node = Root;
                 }
             }
             if (node != null)

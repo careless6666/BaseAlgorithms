@@ -41,6 +41,21 @@ namespace BaseAlgorithms.Tests.Data_Structures
             Assert.AreEqual(3, tree.Root.Left.Data);
             Assert.AreEqual(18, tree.Root.Right.Data);
         }
+        [TestMethod]
+        public void Test2()
+        {
+            var tree = new RedBlackTree();
+
+            tree.Insert(0);
+            tree.Insert(17);
+            tree.Insert(35);
+            tree.Insert(24);
+            tree.Insert(10);
+
+            Assert.AreEqual(tree.Root.Data, 17);
+            Assert.AreEqual(tree.Root.Left.Data, 0);
+            Assert.AreEqual(tree.Root.Right.Data, 35);
+        }
 
         [TestMethod]
         public void TestWithDelete()

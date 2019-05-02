@@ -136,7 +136,7 @@ namespace BaseAlgorithms.Data_Structures
 
         public bool Find(int key)
         {
-            if (Find(key, _root).Data == key)
+            if (Find(key, _root)?.Data == key)
             {
                 Console.WriteLine("{0} was found!", key);
                 return true;
@@ -148,6 +148,8 @@ namespace BaseAlgorithms.Data_Structures
 
         private Node Find(int target, Node current)
         {
+            if (current == null)
+                return null;
 
             if (target < current.Data)
             {
@@ -158,15 +160,13 @@ namespace BaseAlgorithms.Data_Structures
                 else
                     return Find(target, current.Left);
             }
-            else
+
+            if (target == current.Data)
             {
-                if (target == current.Data)
-                {
-                    return current;
-                }
-                else
-                    return Find(target, current.Right);
+                return current;
             }
+
+            return Find(target, current.Right);
         }
 
         public void DisplayTree()

@@ -12,23 +12,19 @@ namespace BaseAlgorithms.Tests.Data_Structures
         [TestMethod]
         public void Tests()
         {
-            var root = new STNode()
-            {
-                Interval = new BaseAlgorithms.Data_Structures.Interval(15,20)
-            };
-
             var st = new SegmentTree();
 
-            st.Insert(root, new BaseAlgorithms.Data_Structures.Interval(10, 30));
-            st.Insert(root, new BaseAlgorithms.Data_Structures.Interval(17, 19));
-            st.Insert(root, new BaseAlgorithms.Data_Structures.Interval(5, 20));
-            st.Insert(root, new BaseAlgorithms.Data_Structures.Interval(12, 15));
-            st.Insert(root, new BaseAlgorithms.Data_Structures.Interval(30, 40));
+            st.Insert(10, 30);
+            st.Insert(17, 19);
+            st.Insert(5, 20);
+            st.Insert(12, 15);
+            st.Insert(30, 40);
 
-            st.InOrder(root);
+            st.DisplayTree(st.Root);
 
-            var ovelapInterval = st.OverlapSearch(root, new BaseAlgorithms.Data_Structures.Interval(6, 7));
+            var ovelapInterval = st.SearchOverlap(6, 7);
             Assert.IsNotNull(ovelapInterval);
+            Assert.AreEqual(ovelapInterval.Low, 5);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace BaseAlgorithms.Data_Structures
         public STNode Left { get; set; }
         public STNode Right { get; set; }
         public STNode Parent { get; set; }
-        public int Max => Math.Max(Math.Max((Left?.Max ?? 0), Right?.Max ?? 0), High);
+        public int Max => Math.Max(Math.Max((Left?.Max ?? 0), Right?.Max ?? 0), High); // TODO: replace auto property to field, for single calc
     }
 
     public class SegmentTree

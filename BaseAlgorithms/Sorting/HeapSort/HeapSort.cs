@@ -2,22 +2,21 @@
 
 namespace BaseAlgorithms.HeapSort
 {
-    public class HeapSort<T>
+    public class HeapSort
     {
-        private T[] _array; //массив сортируемых элементов
+        private int[] _array; //массив сортируемых элементов
         private int heapsize;//число необработанных элементов
-        private IComparer<T> _comparer;
 
-        public HeapSort(T[] a, IComparer<T> comparer)
+
+        public HeapSort(int[] a)
         {
             _array = a;
             heapsize = a.Length;
-            _comparer = comparer;
         }
 
-        private int parent(int i) { return (i - 1) / 2; }//Индекс родительского узла
-        private int left(int i) { return 2 * i + 1; }//Индекс левого потомка
-        private int right(int i) { return 2 * i + 2; }//Индекс правого потомка
+        private int Parent(int i) { return (i - 1) / 2; }//Индекс родительского узла
+        private int Left(int i) { return 2 * i + 1; }//Индекс левого потомка
+        private int Right(int i) { return 2 * i + 2; }//Индекс правого потомка
 
 
         public void Sort()
@@ -26,7 +25,7 @@ namespace BaseAlgorithms.HeapSort
             for (int i = _array.Length - 1; i > 0; i--)
             {
 
-                T temp = _array[0];//Переместим текущий максимальный элемент из нулевой позиции в хвост массива
+                int temp = _array[0];//Переместим текущий максимальный элемент из нулевой позиции в хвост массива
                 _array[0] = _array[i];
                 _array[i] = temp;
 
@@ -39,16 +38,16 @@ namespace BaseAlgorithms.HeapSort
         //что элемент с индексом i меньше хотя бы одного из своих потомков, нарушая тем самым свойство невозрастающей пирамиды
         private void max_heapify(int i)
         {
-            int l = left(i);
-            int r = right(i);
+            int l = Left(i);
+            int r = Right(i);
             int lagest = i;
-            if (l < heapsize && _comparer.Compare(_array[l], _array[i]) > 0)
+            if (l < heapsize && _array[l] > _array[i])
                 lagest = l;
-            if (r < heapsize && _comparer.Compare(_array[r], _array[lagest]) > 0)
+            if (r < heapsize && _array[r] > _array[lagest])
                 lagest = r;
             if (lagest != i)
             {
-                T temp = _array[i];
+                int temp = _array[i];
                 _array[i] = _array[lagest];
                 _array[lagest] = temp;
 
@@ -67,10 +66,5 @@ namespace BaseAlgorithms.HeapSort
                 i--;
             }
         }
-    }
-
-    public class IntComparer : IComparer<int>
-    {
-        public int Compare(int x, int y) { return x - y; }
     }
 }

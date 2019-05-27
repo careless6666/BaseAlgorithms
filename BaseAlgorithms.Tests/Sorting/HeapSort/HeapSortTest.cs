@@ -15,8 +15,7 @@ namespace BaseAlgorithms.Tests.HeapSort
         {
             var arr = new[] { 3, 41, 52, 26, 38, 57, 9, 49 };
 
-            var myComparer = new IntComparer();//Класс, реализующий сравнение
-            var heap = new HeapSort<int>(arr, myComparer);
+            var heap = new BaseAlgorithms.HeapSort.HeapSort(arr);
             heap.Sort();
 
             Assert.IsTrue(arr.SequenceEqual(new[] { 3, 9, 26, 38, 41, 49, 52, 57 }));

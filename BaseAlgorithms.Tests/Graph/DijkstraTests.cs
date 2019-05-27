@@ -14,7 +14,8 @@ namespace BaseAlgorithms.Tests.Graph
         {
             var dij = new Dijkstra(9);
 
-            int[,] graph = new int[,] { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+            int[,] graph = new int[,] { 
+                { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
                 { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
                 { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
                 { 0, 0, 7, 0, 9, 14, 0, 0, 0 },

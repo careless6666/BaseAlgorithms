@@ -9,20 +9,16 @@
 
             while (i <= j)
             {
-                while (elements[i].CompareTo(pivot) < 0)
-                {
+                while (elements[i] < pivot)
                     i++;
-                }
-
-                while (elements[j].CompareTo(pivot) > 0)
-                {
+                
+                while (elements[j] > pivot)
                     j--;
-                }
-
+                
                 if (i <= j)
                 {
                     // Swap
-                    int tmp = elements[i];
+                    var tmp = elements[i];
                     elements[i] = elements[j];
                     elements[j] = tmp;
 
@@ -33,14 +29,10 @@
 
             // Recursive calls
             if (left < j)
-            {
                 Sort(elements, left, j);
-            }
-
+            
             if (i < right)
-            {
                 Sort(elements, i, right);
-            }
         }
     }
 }

@@ -55,14 +55,13 @@ namespace BaseAlgorithms.PopularTasks
             return ReqursiveGenerationResult;
         }
 
-        public void Permute(string str,
-            int l, int r)
+        public void Permute(string str, int l, int r)
         {
             if (l == r)
                 ReqursiveGenerationResult.Add(str);
             else
             {
-                for (int i = l; i <= r; i++)
+                for (var i = l; i <= r; i++)
                 {
                     str = Swap(str, l, i);
                     Permute(str, l + 1, r);

@@ -20,7 +20,11 @@ namespace BaseAlgorithms.Tests.PopularTasks.OptimalBinarySearchTree
         [TestMethod]
         public void TestFrequence()
         {
-            
+            int []keys = {10, 12, 20}; 
+            int []freq = {34, 8, 50}; 
+            var n = keys.Length;
+            var res = OptimalBinarySearchTreeDP.OptimalSearchTree(keys, freq, n);
+            Assert.AreEqual(142, res);
         }
     }
 }

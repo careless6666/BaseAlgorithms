@@ -2,6 +2,9 @@ using System;
 
 namespace BaseAlgorithms.Strings
 {
+    /// <summary>
+    /// Knuth–Morris–Pratt. The time complexity of KMP is O(n).
+    /// </summary>
     public class KMPSearch
     {
         public int Search(string pat, string txt)

@@ -6,7 +6,7 @@ namespace BaseAlgorithms.Tests
     [TestClass]
     public class LamaIntervalTreeTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void TestAddItem()
         {
             var dt = DateTime.Now;

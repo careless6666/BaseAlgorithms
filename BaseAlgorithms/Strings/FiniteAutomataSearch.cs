@@ -2,6 +2,9 @@ using System;
 
 namespace BaseAlgorithms.Strings
 {
+    /// <summary>
+    /// The time complexity of the search process is O(n).
+    /// </summary>
     public class FiniteAutomataSearch
     {
         private static readonly int NoOfChars = 256;

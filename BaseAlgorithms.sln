@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAlgorithms", "BaseAlgor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAlgorithms.Tests", "BaseAlgorithms.Tests\BaseAlgorithms.Tests.csproj", "{D1E1C971-4E14-42F5-8FE3-0F744E6D28CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAlgorithms.BenchMark", "BaseAlgorithms.BenchMark\BaseAlgorithms.BenchMark.csproj", "{EB167EEF-F5FB-41EA-A843-AAC8B0009322}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D1E1C971-4E14-42F5-8FE3-0F744E6D28CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1E1C971-4E14-42F5-8FE3-0F744E6D28CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1E1C971-4E14-42F5-8FE3-0F744E6D28CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB167EEF-F5FB-41EA-A843-AAC8B0009322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB167EEF-F5FB-41EA-A843-AAC8B0009322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB167EEF-F5FB-41EA-A843-AAC8B0009322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB167EEF-F5FB-41EA-A843-AAC8B0009322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

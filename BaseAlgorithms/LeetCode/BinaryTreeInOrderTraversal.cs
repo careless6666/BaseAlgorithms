@@ -2,18 +2,29 @@ using System.Collections.Generic;
 
 namespace BaseAlgorithms.LeetCode
 {
+    //https://leetcode.com/problems/binary-tree-inorder-traversal/
     public class BinaryTreeInOrderTraversal
     {
-        private List<int> _result = new List<int>();
-        
         public IList<int> InorderTraversal(TreeNode root)
         {
-            if (root == null)
-                return _result;
-            
-            _result.Add(root.val);
 
-            
+            var inorder = new List<int>();
+            if (root == null)
+            {
+                return inorder;
+            }
+
+            if (root.left == null && root.right == null)
+            {
+                inorder.Add(root.val);
+                return inorder;
+            }
+
+            inorder.AddRange(InorderTraversal(root.left));
+            inorder.Add(root.val);
+            inorder.AddRange(InorderTraversal(root.right));
+
+            return inorder;
         }
     }
 }

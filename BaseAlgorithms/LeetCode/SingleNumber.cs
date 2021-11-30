@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace BaseAlgorithms.LeetCode
 {
+    //https://leetcode.com/problems/single-number/
     public class SingleNumberSearch
     {
         private Dictionary<int, int> dict = new Dictionary<int, int>();

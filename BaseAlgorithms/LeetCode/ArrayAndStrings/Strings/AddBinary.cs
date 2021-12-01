@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace BaseAlgorithms.LeetCode.ArrayAndStrings.Strings
 {
@@ -12,7 +13,7 @@ namespace BaseAlgorithms.LeetCode.ArrayAndStrings.Strings
             if (a.Length > b.Length)
                 b = b.PadLeft(a.Length, '0');
             
-            var resultStr = new List<char>();
+            var resultStr = new StringBuilder();
             var overflow = 0;
             for (var i = a.Length - 1; i >= 0; i--)
             {
@@ -31,7 +32,7 @@ namespace BaseAlgorithms.LeetCode.ArrayAndStrings.Strings
                 resultStr.Insert(0, '1');
             }
 
-            return new string(resultStr.ToArray());
+            return new string(resultStr.ToString());
         }
     }
 }

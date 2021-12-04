@@ -4,50 +4,22 @@ namespace BaseAlgorithms.LeetCode.ArrayAndStrings.Arrays
 {
     public class MinSubArrayLenTask
     {
-        public int MinSubArrayLen(int target, int[] nums) {
+        public int MinSubArrayLen(int target, int[] nums)
+        {
+            var ans = int.MaxValue;
             var left = 0;
-            var minCount = int.MaxValue;
-
-            var right = left;
             var sum = 0;
-
-            while (left < nums.Length)
+            for (var i = 0; i < nums.Length; i++)
             {
-                var counter = 0;
-                if (left > 0)
-                    sum -= nums[left - 1];
-
-                if (sum >= target)
+                sum += nums[i];
+                while (sum >= target)
                 {
-                    minCount = Math.Min(minCount, right - left);
-                    left++;
-                    continue;
+                    ans = Math.Min(ans, i + 1 - left);
+                    sum -= nums[left++];
                 }
-
-                var j = right;
-                for (var i = j; i < nums.Length; i++, j++)
-                {
-                    sum += nums[i];
-                    counter++;
-                    if (sum >= target)
-                    {
-                        right = right + counter;
-                        minCount = Math.Min(minCount, right - left);
-
-                        break;
-                    }
-                }
-
-                if (j == nums.Length)
-                {
-                    right = nums.Length;
-                }
-
-                left++;
             }
 
-
-            return minCount == int.MaxValue ? 0 : minCount;
+            return (ans != int.MaxValue) ? ans : 0;
         }
     }
 }

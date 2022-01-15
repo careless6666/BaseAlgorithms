@@ -2,7 +2,7 @@ using System;
 
 namespace BaseAlgorithms.LeetCode.Graph.MinimumSpanningTree
 {
-    public class MinCostToConnectAllPoints
+    public class MinCostToConnectAllPointsKrukuskal
     {
         public int MinCostConnectPoints(int[][] points) {
         var v = points.Length;

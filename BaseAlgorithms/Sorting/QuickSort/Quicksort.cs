@@ -18,9 +18,7 @@
                 if (i <= j)
                 {
                     // Swap
-                    var tmp = elements[i];
-                    elements[i] = elements[j];
-                    elements[j] = tmp;
+                    (elements[i], elements[j]) = (elements[j], elements[i]);
 
                     i++;
                     j--;

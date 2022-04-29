@@ -41,9 +41,7 @@ namespace BaseAlgorithms.PopularTasks
 
         void Swap(int[] a, int i, int j)
         {
-            var s = a[i];
-            a[i] = a[j];
-            a[j] = s;
+            (a[i], a[j]) = (a[j], a[i]);
         }
     }
 

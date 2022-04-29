@@ -34,9 +34,7 @@ namespace BaseAlgorithms.PopularTasks
             int i, int j)
         {
             var charArray = a.ToCharArray();
-            var temp = charArray[i];
-            charArray[i] = charArray[j];
-            charArray[j] = temp;
+            (charArray[i], charArray[j]) = (charArray[j], charArray[i]);
             var s = new string(charArray);
             return s;
         }

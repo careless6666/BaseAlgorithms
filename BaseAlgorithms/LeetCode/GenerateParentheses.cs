@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BaseAlgorithms.LeetCode
 {
@@ -12,7 +13,7 @@ namespace BaseAlgorithms.LeetCode
             
             var tmpStr = string.Empty;
             var fact = Factorial(n);
-            var stack = new char[fact];
+            var stack = new Stack<char>(fact);
             Generator(fact, stack, tmpStr);
 
             return _resultList;
@@ -28,7 +29,7 @@ namespace BaseAlgorithms.LeetCode
         }
 
 
-        private void Generator(int length, char[] stack, string tmpStr)
+        private void Generator(int length, Stack<char> stack, string tmpStr)
         {
             if (length != 0)
             {
@@ -51,11 +52,11 @@ namespace BaseAlgorithms.LeetCode
             }
         }
 
-        private bool IsValid(int length, char s, char[] stack)
+        private bool IsValid(int length, char s, Stack<char> stack)
         {
             if (s == '(')
             {
-                stack[^length] = '(';
+                stack.ToArray()[^length] = '(';
                 return true;
             }
 

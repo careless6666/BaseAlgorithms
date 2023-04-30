@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using BaseAlgorithms.PopularTasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -27,6 +24,19 @@ namespace BaseAlgorithms.Tests.PopularTasks
             Assert.IsTrue(res.First() == "ABC");
             Assert.IsTrue(res.Last() == "CAB");
         }
-
+        
+        [TestMethod]
+        public void TestBackTracking()
+        {
+            var mutations = new PermutationBackTracking();
+            var res = mutations.Permute(new []{1,2,3});
+            Assert.IsTrue(res.Count == 6);
+            //123
+            //132
+            //213
+            //231
+            //312
+            //321
+        }
     }
 }

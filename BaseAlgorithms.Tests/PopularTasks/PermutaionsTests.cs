@@ -44,13 +44,14 @@ namespace BaseAlgorithms.Tests.PopularTasks
         {
             var mutations = new PermutationBackTrackingDifferentSubset();
             var res = mutations.Subsets(new []{1,2,3});
-            Assert.IsTrue(res.Count == 8);
+            Assert.IsTrue(res.Count == 7);
+            //1
+            //12
             //123
-            //132
-            //213
-            //231
-            //312
-            //321
+            //13
+            //2
+            //23
+            //3
         }
     }
 }

@@ -18,7 +18,9 @@ public class PermutationBackTrackingDifferentSubset
             return;
         }
 
-        ans.Add(curr.ToArray());
+        if(curr.Count > 0)
+            ans.Add(curr.ToArray());
+        
         for (var j = i; j < nums.Length; j++)
         {
             curr.Add(nums[j]);

@@ -38,5 +38,19 @@ namespace BaseAlgorithms.Tests.PopularTasks
             //312
             //321
         }
+        
+        [TestMethod]
+        public void TestBackTrackingUniqCombinations()
+        {
+            var mutations = new PermutationBackTrackingDifferentSubset();
+            var res = mutations.Subsets(new []{1,2,3});
+            Assert.IsTrue(res.Count == 8);
+            //123
+            //132
+            //213
+            //231
+            //312
+            //321
+        }
     }
 }

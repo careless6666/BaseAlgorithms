@@ -45,13 +45,16 @@ namespace BaseAlgorithms.Tests.PopularTasks
             var mutations = new PermutationBackTrackingDifferentSubset();
             var res = mutations.Subsets(new []{1,2,3});
             Assert.IsTrue(res.Count == 7);
-            //1
-            //12
-            //123
-            //13
-            //2
-            //23
-            //3
+            //1 12 123 13 2 23 3
+        }
+        
+        [TestMethod]
+        public void TestBackTrackingUniqCombinationsCustomLength()
+        {
+            var mutations = new PermutationBackTrackingWithCustomLengthOfRange();
+            var res = mutations.Combine(4, 2);
+            Assert.IsTrue(res.Count == 6);
+            //12 23 34 13 14 24
         }
     }
 }

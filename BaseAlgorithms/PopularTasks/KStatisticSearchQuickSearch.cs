@@ -28,8 +28,7 @@ public class KStatisticSearchQuickSearch
 
             // performing division
             // barrier is a[l + 1], i.e. median among a[l], a[l + 1], a[r]
-            var
-                i = l + 1;
+            var i = l + 1;
             var j = r;
             var cur = a[l + 1];
             for (;;)

@@ -8,11 +8,11 @@ namespace BaseAlgorithms.PopularTasks
     /// <summary>
     /// Поиск к статистики через красно черное дерево
     /// </summary>
-    public class KStatisticSearch
+    public class KStatisticSearchReadBackTree
     {
         RedBlackTree rbTree = new RedBlackTree();
 
-        public KStatisticSearch(int[] srcArr)
+        public KStatisticSearchReadBackTree(int[] srcArr)
         {
             foreach (var i in srcArr)
                 rbTree.Insert(i);

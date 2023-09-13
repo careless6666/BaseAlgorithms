@@ -11,7 +11,20 @@ namespace BaseAlgorithms.Tests.PopularTasks
     public class KStatisticSearchTests
     {
         [TestMethod]
-        public void Tests()
+        public void TestsQuickSearch()
+        {
+            var alg = new KStatisticSearchQuickSearch();
+
+            var arr = new int[] { 0, 17, 35, 24, 10 }; //0, 10, 17, 24, 35
+
+            //0, 10, 17, 24, 35
+
+            var result = alg.OrderStatistics(arr, arr.Length, 2);
+            Assert.AreEqual(17, result);
+        }
+        
+        [TestMethod]
+        public void TestsRedBlack()
         {
             var tree = new RedBlackTree();
 
@@ -21,7 +34,7 @@ namespace BaseAlgorithms.Tests.PopularTasks
             tree.Insert(24);
             tree.Insert(10);
 
-            var kStatistic = new KStatisticSearch(new[] {0, 17, 35, 24, 10});
+            var kStatistic = new KStatisticSearchReadBackTree(new[] {0, 17, 35, 24, 10});
 
             //0, 10, 17, 24, 35
 

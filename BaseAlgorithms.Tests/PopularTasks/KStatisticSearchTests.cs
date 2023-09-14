@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BaseAlgorithms.Data_Structures;
 using BaseAlgorithms.PopularTasks;
+using BaseAlgorithms.PopularTasks.KthStatistic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BaseAlgorithms.Tests.PopularTasks
@@ -20,6 +21,19 @@ namespace BaseAlgorithms.Tests.PopularTasks
             //0, 10, 17, 24, 35
 
             var result = alg.OrderStatistics(arr, arr.Length, 2);
+            Assert.AreEqual(17, result);
+        }
+        
+        [TestMethod]
+        public void TestsPriorityQueue()
+        {
+            var alg = new KthStatisticPriorityQueue();
+
+            var arr = new int[] { 0, 17, 35, 24, 10 }; //0, 10, 17, 24, 35
+
+            //0, 10, 17, 24, 35
+
+            var result = alg.FindKthLargest(arr, 3);
             Assert.AreEqual(17, result);
         }
         
